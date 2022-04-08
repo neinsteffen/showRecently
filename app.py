@@ -1,5 +1,6 @@
 
 from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtCore import QEvent
 from page import Open
 from mainWindow import Ui_MainWindow
 from PyQt5.Qt import Qt
@@ -7,31 +8,20 @@ from PyQt5.Qt import Qt
 class Main(QMainWindow):
     def __init__(self):
         super().__init__()
-        
-        self.COMBINATIONS = [
-        {Qt.Key_Control, Qt.Key_X}
-        ]
-        self.current = set()
-        
-        
-    
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+            
     def keyPressEvent(self, event):
-        if any([event.key() in COMBO for COMBO in self.COMBINATIONS]):
-                self.current.add(event.key())
-        if any(all(k in self.current for k in COMBO) for COMBO in self.COMBINATIONS):
-            self.prnt(event.key())
-        if event.key() == Qt.Key_Escape:
-            return False
-                
-
-    def prnt(self, key):
-        self.load = Open()
-        self.load.show()
-        self.showMinimized()
-        #self.hide()
-
-        self.current.clear()
-
+        if event.type() == QEvent.KeyPress:      
+            if event.key() == Qt.Key_X and event.modifiers() == Qt.ControlModifier:
+                print("ctrl+x")
+                self.load = Open()
+                self.load.show()
+                self.showMinimized()
+            else: 
+                if event.key() == Qt.Key_C and event.modifiers() == Qt.ControlModifier:
+                    print("ctrl+c")
+                    
 
 if __name__ == '__main__':
     import sys
