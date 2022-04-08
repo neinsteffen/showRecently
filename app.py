@@ -1,21 +1,8 @@
 from pynput import keyboard
 from PyQt5.QtWidgets import QMainWindow, QApplication,QGraphicsDropShadowEffect,QDesktopWidget
 from page import Open
-class Load(object):
-    def __init__(self):
-        super(Load, self).__init__()
-      
-    def execute(self):
-        pass
-        #self.loading = Open()
-        #self.loading.show()
-        
-
 
     
-    
-    
-
 if __name__ == '__main__':
     
     
@@ -34,9 +21,7 @@ if __name__ == '__main__':
             load = Open()
             load.show()
             app.exit(app.exec_())
-            
-            
-            
+                      
     def onRelease(key):
         if any([key in multi for multi in COMBS]):
             current.remove(key)
