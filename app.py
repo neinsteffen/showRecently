@@ -1,46 +1,48 @@
-from pynput import keyboard
-from PyQt5.QtWidgets import QMainWindow, QApplication,QGraphicsDropShadowEffect,QDesktopWidget
+
+from PyQt5.QtWidgets import QMainWindow, QApplication
 from page import Open
+from mainWindow import Ui_MainWindow
+from PyQt5.Qt import Qt
 
+class Main(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        
+        self.COMBINATIONS = [
+        {Qt.Key_Control, Qt.Key_X}
+        ]
+        self.current = set()
+        
+        
     
+    def keyPressEvent(self, event):
+        if any([event.key() in COMBO for COMBO in self.COMBINATIONS]):
+                self.current.add(event.key())
+        if any(all(k in self.current for k in COMBO) for COMBO in self.COMBINATIONS):
+            self.prnt(event.key())
+        if event.key() == Qt.Key_Escape:
+            return False
+                
+
+    def prnt(self, key):
+        self.load = Open()
+        self.load.show()
+        self.showMinimized()
+        #self.hide()
+
+        self.current.clear()
+
+
 if __name__ == '__main__':
+    import sys
+    app = QApplication(sys.argv)
+    main = Main()
+    main.show()
+    app.exit(app.exec_())
     
     
-    COMBS = [
-        {keyboard.Key.tab, keyboard.KeyCode(char='x')},
-        {keyboard.Key.tab, keyboard.KeyCode(char='X')}
-    ]
-    current = set()
-    def run(key):
-        if any([key in multi for multi in COMBS]):
-            #key olayları gerçekleştiğinde bunları hafızaya alıyoruz
-            current.add(key)
-        if any(all(k in current for k in multi) for multi in COMBS):
-            import sys
-            app = QApplication(sys.argv)
-            load = Open()
-            load.show()
-            app.exit(app.exec_())
+    
+    
+   
                       
-    def onRelease(key):
-        if any([key in multi for multi in COMBS]):
-            current.remove(key)
-        if key == keyboard.Key.esc:
-            return False     
-    with keyboard.Listener(on_press=run, on_release=onRelease) as listener:
-        
-        listener.join()
-    
-        
-    
-     
-    
-    
-    
-
-
-
-    
-
-
-    
+ 
