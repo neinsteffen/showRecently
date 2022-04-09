@@ -34,5 +34,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.lbl_info.setText(_translate("MainWindow", "Şu an kapalı"))
-        self.open_button.setText(_translate("MainWindow", "Aç"))
+        self.lbl_info.setText(_translate("MainWindow", "Closed"))
+        self.open_button.setText(_translate("MainWindow", "Open"))
+        
