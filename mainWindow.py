@@ -14,11 +14,16 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(316, 224)
+        MainWindow.resize(316, 215)
+        MainWindow.setStyleSheet("")
+        MainWindow.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.lbl_info = QtWidgets.QLabel(self.centralwidget)
         self.lbl_info.setGeometry(QtCore.QRect(120, 140, 91, 16))
+        self.lbl_info.setStyleSheet("QLabel{\n"
+"    color:rgb(255, 255, 255);\n"
+"}")
         self.lbl_info.setObjectName("lbl_info")
         self.open_button = QtWidgets.QPushButton(self.centralwidget)
         self.open_button.setGeometry(QtCore.QRect(40, 90, 75, 41))
@@ -27,10 +32,45 @@ class Ui_MainWindow(object):
         self.close_button = QtWidgets.QPushButton(self.centralwidget)
         self.close_button.setGeometry(QtCore.QRect(170, 90, 75, 41))
         self.close_button.setObjectName("close_button")
+        self.verticalFrame = QtWidgets.QFrame(self.centralwidget)
+        self.verticalFrame.setGeometry(QtCore.QRect(0, -50, 321, 271))
+        self.verticalFrame.setStyleSheet("QFrame{    \n"
+"    background-color: rgb(39, 44, 54);\n"
+"    padding: 10px;\n"
+"    border-radius: 5px;\n"
+"    gridline-color: rgb(44, 49, 60);\n"
+"    border-bottom: 1px solid rgb(44, 49, 60);\n"
+"    margin-top:20px;\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QFrame::item{\n"
+"    border-color: rgb(255, 255, 255);\n"
+"    padding-left: 5px;\n"
+"    padding-right: 5px;\n"
+"    gridline-color: rgb(44, 49, 60);\n"
+"}\n"
+"QFrame::item:selected{\n"
+"    background-color: rgb(170, 170, 255);\n"
+"}\n"
+"\n"
+"QFrame::section{\n"
+"    Background-color: rgb(39, 44, 54);\n"
+"    max-width: 30px;\n"
+"    border: 1px solid rgb(44, 49, 60);\n"
+"    border-style: none;\n"
+"    border-bottom: 1px solid rgb(44, 49, 60);\n"
+"    border-right: 1px solid rgb(44, 49, 60);\n"
+"}\n"
+"\n"
+"")
+        self.verticalFrame.setObjectName("verticalFrame")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalFrame)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.verticalFrame.raise_()
+        self.lbl_info.raise_()
+        self.open_button.raise_()
+        self.close_button.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -38,6 +78,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.lbl_info.setText(_translate("MainWindow", "Closed"))
+        self.lbl_info.setText(_translate("MainWindow", "Şu an kapalı"))
         self.open_button.setText(_translate("MainWindow", "Open"))
         self.close_button.setText(_translate("MainWindow", "Close"))
