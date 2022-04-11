@@ -47,15 +47,7 @@ class Main(QMainWindow):
     def listenerFinished(self):
         print("Listener Done!")
     def showRecently(self):
-        self.listener = Listener()
-        val = self.listener.val
-        print("val:", val)
-        if val:
-            print("showa girdi")
-            self.load = Open()
-            self.load.show()
-            self.showMinimized()
-            pass
+        pass
 class Listener(QThread):
     copyiedVal =  set()
     val = False
